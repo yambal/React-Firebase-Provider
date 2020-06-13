@@ -1,7 +1,7 @@
 {
   "name": "react_redux_pwa_tmp",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "private": false,
   "homepage": "./",
   "dependencies": {
     "@babel/core": "7.9.0",
@@ -91,7 +91,8 @@
     "ghpages": "gh-pages -d build",
     "dist:clear": "rimraf dist",
     "dist:build": "tsc --project ./tsconfig.dist.json",
-    "dist": "run-s dist:clear dist:build"
+    "dist": "run-s dist:clear dist:build",
+    "prepublishOnly": "yarn run dist"
   },
   "eslintConfig": {
     "extends": "react-app"

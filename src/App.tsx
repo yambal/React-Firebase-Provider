@@ -21,7 +21,15 @@ import { useSelector } from 'react-redux';
 import { FirebaseProvider } from './provider/FirebaseProvider';
 import { FirebaseAuthProvider } from './provider/FirebaseAuthProvider';
 
-import { Test } from './components/Test';
+import { SignInWithEmailAndPassword } from './components/SignInWithEmailAndPassword';
+import { SignOut } from './components/SignOut';
+import { CreateUserWithEmailAndPassword } from './components/CreateUserWithEmailAndPassword';
+import { SendPasswordResetEmail } from './components/SendPasswordResetEmail';
+import { SendEmailVerification } from './components/SendEmailVerification';
+import { DeleteUser } from './components/DeleteUser';
+import { AppBarUser } from './components/HeaderBar/AppBarUser';
+import { Profile } from './components/Profile';
+import { HeaderBar } from './components/HeaderBar/HeaderBar';
 
 const routerBasename = (state: iRootState): string | undefined => state.config.router_basename
 
@@ -29,14 +37,13 @@ const App:React.FC = () => {
   const stateRouterBasename = useSelector(routerBasename) || '/'
   const drawerRef = React.useRef<any>()
 
-  const drawerOpenHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const drawerOpenHandler = () => {
     drawerRef.current && drawerRef.current.setIsOpen(true)
   }
 
   return (
     <FirebaseProvider>
-      <FirebaseAuthProvider>
-        
+      <FirebaseAuthProvider languageCode="ja">
         <BrowserRouter basename={stateRouterBasename}>
           <SwipeableTemporaryDrawer ref={drawerRef} position="left">
             <List>
@@ -51,24 +58,19 @@ const App:React.FC = () => {
               </ListItem>
             </List>
           </SwipeableTemporaryDrawer>
-          <AppBar position="fixed" color="default">
-            <Toolbar>
-              <IconButton edge="start" color="inherit" aria-label="menu" onClick={drawerOpenHandler}>
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6">
-                News
-              </Typography>
-              <GrowSpacer />
-              <Button color="inherit">Login</Button>
-            </Toolbar>
-          </AppBar>
-          <Toolbar />
+          <HeaderBar drawerOpenHandler={drawerOpenHandler}/>
+          <Toolbar/>
           <Switch>
             <Route exact path="/" component={Home}/>
+            <Route exact path="/sign-up" component={CreateUserWithEmailAndPassword}/>
+            <Route exact path="/sign-in" component={SignInWithEmailAndPassword}/>
+            <Route exact path="/mail-verification" component={SendEmailVerification}/>
+            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/pwd-reset" component={SendPasswordResetEmail}/>
+            <Route exact path="/withdrawal" component={DeleteUser}/>
             <Route exact path="/counter" component={Counter}/>
           </Switch>
-          <Test />
+          <Toolbar/>
           <FooterBar />
         </BrowserRouter>
       </FirebaseAuthProvider>

@@ -10,7 +10,7 @@ import { MyThemeProvider } from './provider/MyThemeProvider';
 
 ReactDOM.render(
   <Provider store={store}>
-    <MyThemeProvider fontType="ja" baseFontSize={16}>
+    <MyThemeProvider fontType="sys" baseFontSize={16}>
       <App />
     </MyThemeProvider>
   </Provider>,

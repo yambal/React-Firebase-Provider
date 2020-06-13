@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "outDir": "./dist",
+    "jsx": "react",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "./src/react-app-env.d.ts",
+    "./src/index.tsx",
+    "./src/App.tsx",
+    "./src/App.test.tsx",
+    "./src/setupTests.ts",
+    "./src/serviceWorker.ts",
+    "./src/components",
+    "./src/containers",
+    "./src/redux",
+    "./src/modules",
+    "./src/provider/MyThemeProvider.tsx",
+    "./src/provider/ScGlobalStyleBuilder.ts"
+  ]
+}

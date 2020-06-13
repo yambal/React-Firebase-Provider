@@ -18,6 +18,10 @@ import { SwipeableTemporaryDrawer } from './containers/SwipeableTemporaryDrawer'
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import iRootState from './redux/rootState';
 import { useSelector } from 'react-redux';
+import { FirebaseProvider } from './provider/FirebaseProvider';
+import { FirebaseAuthProvider } from './provider/FirebaseAuthProvider';
+
+import { Test } from './components/Test';
 
 const routerBasename = (state: iRootState): string | undefined => state.config.router_basename
 
@@ -30,39 +34,45 @@ const App:React.FC = () => {
   }
 
   return (
-    <BrowserRouter basename={stateRouterBasename}>
-      <SwipeableTemporaryDrawer ref={drawerRef} position="left">
-        <List>
-          <ListItem button>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-        </List>
-      </SwipeableTemporaryDrawer>
-      <AppBar position="fixed" color="default">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={drawerOpenHandler}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">
-            News
-          </Typography>
-          <GrowSpacer />
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <Toolbar />
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/counter" component={Counter}/>
-      </Switch>
-      <FooterBar />
-    </BrowserRouter>
+    <FirebaseProvider>
+      <FirebaseAuthProvider>
+        
+        <BrowserRouter basename={stateRouterBasename}>
+          <SwipeableTemporaryDrawer ref={drawerRef} position="left">
+            <List>
+              <ListItem button>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary="Inbox" />
+              </ListItem>
+              <Divider />
+              <ListItem button>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary="Inbox" />
+              </ListItem>
+            </List>
+          </SwipeableTemporaryDrawer>
+          <AppBar position="fixed" color="default">
+            <Toolbar>
+              <IconButton edge="start" color="inherit" aria-label="menu" onClick={drawerOpenHandler}>
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6">
+                News
+              </Typography>
+              <GrowSpacer />
+              <Button color="inherit">Login</Button>
+            </Toolbar>
+          </AppBar>
+          <Toolbar />
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/counter" component={Counter}/>
+          </Switch>
+          <Test />
+          <FooterBar />
+        </BrowserRouter>
+      </FirebaseAuthProvider>
+    </FirebaseProvider>
   );
 }
 

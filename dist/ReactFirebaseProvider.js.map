@@ -1,1 +1,1 @@
-{"version":3,"file":"ReactFirebaseProvider.js","sourceRoot":"","sources":["../src/ReactFirebaseProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,6BAA6B,CAAA;AAC9D,OAAO,EAAE,oBAAoB,EAAE,MAAM,iCAAiC,CAAA"}
+{"version":3,"file":"ReactFirebaseProvider.js","sourceRoot":"","sources":["../src/ReactFirebaseProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,6BAA6B,CAAA;AAC7D,OAAO,EAAE,gBAAgB,EAAE,MAAM,6BAA6B,CAAA;AAC9D,OAAO,EAAE,mBAAmB,EAAE,MAAM,iCAAiC,CAAA;AACrE,OAAO,EAAE,oBAAoB,EAAE,MAAM,iCAAiC,CAAA"}

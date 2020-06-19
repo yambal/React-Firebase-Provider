@@ -76,6 +76,10 @@ const _Home:React.FC<iHome> = props => {
               <TableCell>ログイン状態</TableCell>
               <TableCell>[AUTH].signIned</TableCell>
             </TableRow>
+            <TableRow>
+              <TableCell>Realtime Database</TableCell>
+              <TableCell>const FirebaseDatabase = React.useContext(FirebaseDatabaseContext)<br />const db = FirebaseDatabase.firebaseDatabase</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
@@ -84,7 +88,9 @@ const _Home:React.FC<iHome> = props => {
         {`
 <FirebaseProvider>
   <FirebaseAuthProvider languageCode="ja">
-    ...
+    <FirebaseDatabaseProbider>
+      ...
+    </FirebaseDatabaseProbider>
   </FirebaseAuthProvider>
 <FirebaseProvider>
         `}

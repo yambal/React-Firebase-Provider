@@ -8,11 +8,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { GrowSpacer } from '../GrowSpacer';
 import { AppBarUser } from './AppBarUser';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface iHeaderBar extends RouteComponentProps<{}>{
   drawerOpenHandler: () => void
 }
 
+const HeaderTitle = styled(Typography)`
+  cursor: pointer;
+`
 
 const _HeaderBar:React.FC<iHeaderBar> = props => {
   const { history } = props
@@ -36,11 +40,9 @@ const _HeaderBar:React.FC<iHeaderBar> = props => {
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={drawerOpenHandler}>
           <MenuIcon />
         </IconButton>
-        <div onClick={goHomeHandler}>
-          <Typography variant="h6">
-            React Firebase Provider
-          </Typography>
-        </div>
+        <HeaderTitle variant="h6" onClick={goHomeHandler}>
+          React Firebase Provider
+        </HeaderTitle>
         <GrowSpacer />
         <AppBarUser />
       </Toolbar>

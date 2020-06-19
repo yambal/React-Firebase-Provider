@@ -30,6 +30,9 @@ import { DeleteUser } from './components/DeleteUser';
 import { AppBarUser } from './components/HeaderBar/AppBarUser';
 import { Profile } from './components/Profile';
 import { HeaderBar } from './components/HeaderBar/HeaderBar';
+import { FirebaseDatabaseProbider } from './provider/FirebaseDatabaseProvider';
+import { DatabaseCounter } from './containers/DatabaseCounter';
+import { DrawerContent } from './containers/DrawerContent';
 
 const routerBasename = (state: iRootState): string | undefined => state.config.router_basename
 
@@ -44,35 +47,28 @@ const App:React.FC = () => {
   return (
     <FirebaseProvider>
       <FirebaseAuthProvider languageCode="ja">
-        <BrowserRouter basename={stateRouterBasename}>
-          <SwipeableTemporaryDrawer ref={drawerRef} position="left">
-            <List>
-              <ListItem button>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary="Inbox" />
-              </ListItem>
-              <Divider />
-              <ListItem button>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary="Inbox" />
-              </ListItem>
-            </List>
-          </SwipeableTemporaryDrawer>
-          <HeaderBar drawerOpenHandler={drawerOpenHandler}/>
-          <Toolbar/>
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/sign-up" component={CreateUserWithEmailAndPassword}/>
-            <Route exact path="/sign-in" component={SignInWithEmailAndPassword}/>
-            <Route exact path="/mail-verification" component={SendEmailVerification}/>
-            <Route exact path="/profile" component={Profile}/>
-            <Route exact path="/pwd-reset" component={SendPasswordResetEmail}/>
-            <Route exact path="/withdrawal" component={DeleteUser}/>
-            <Route exact path="/counter" component={Counter}/>
-          </Switch>
-          <Toolbar/>
-          <FooterBar />
-        </BrowserRouter>
+        <FirebaseDatabaseProbider>
+          <BrowserRouter basename={stateRouterBasename}>
+            <SwipeableTemporaryDrawer ref={drawerRef} position="left">
+              <DrawerContent />
+            </SwipeableTemporaryDrawer>
+            <HeaderBar drawerOpenHandler={drawerOpenHandler}/>
+            <Toolbar/>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/sign-up" component={CreateUserWithEmailAndPassword}/>
+              <Route exact path="/sign-in" component={SignInWithEmailAndPassword}/>
+              <Route exact path="/mail-verification" component={SendEmailVerification}/>
+              <Route exact path="/profile" component={Profile}/>
+              <Route exact path="/pwd-reset" component={SendPasswordResetEmail}/>
+              <Route exact path="/withdrawal" component={DeleteUser}/>
+              <Route exact path="/counter" component={Counter}/>
+              <Route exact path="/dbCounter" component={DatabaseCounter}/>
+            </Switch>
+            <Toolbar/>
+            <FooterBar />
+          </BrowserRouter>
+        </FirebaseDatabaseProbider>
       </FirebaseAuthProvider>
     </FirebaseProvider>
   );

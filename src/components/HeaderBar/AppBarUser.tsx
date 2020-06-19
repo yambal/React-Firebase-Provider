@@ -62,7 +62,6 @@ const _AppBarUser: React.FC<iAppBarUser> = props => {
 
   const displayName = React.useMemo(
     () => {
-      console.log(firebaseAuth?.firebaseUser?.email)
       if (firebaseAuth?.firebaseUser?.displayName && firebaseAuth.firebaseUser.displayName.length > 0) {
         return firebaseAuth.firebaseUser.displayName
       }
